@@ -45,7 +45,7 @@ class HistoryBtn extends StatelessWidget {
                 width: 16,
               ),
               Text(
-                "История операций по счет",
+                "История операций по счетy",
                 style: AppFonts.s16w700
                     .copyWith(color: AppColors.black),
               )

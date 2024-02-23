@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:skynet/core/config/themes/app_colors.dart';
 import 'package:skynet/core/config/themes/app_fonts.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
-  const CustomAppBar({
-    super.key,
-  });
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final String name;
+  final String address;
+  const CustomAppBar({super.key, required this.name, required this.address});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      actions: const[
+      actions: const [
         Padding(
           padding: EdgeInsets.only(right: 27),
           child: CircleAvatar(
@@ -28,11 +28,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Шаров Ф",
+                    name,
                     style: AppFonts.s22w700.copyWith(color: AppColors.black),
                   ),
                   Text(
-                    "с.Кенбулун, ул.Тупиковая, д.6",
+                    address,
                     style:
                         AppFonts.s12w700.copyWith(color: AppColors.lightGrey),
                   ),
@@ -44,7 +44,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
       ),
     );
   }
-  
+
   @override
-  Size get preferredSize =>const Size.fromHeight(40);
+  Size get preferredSize => const Size.fromHeight(40);
 }

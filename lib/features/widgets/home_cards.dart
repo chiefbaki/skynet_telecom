@@ -7,13 +7,10 @@ class HomeCards extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { // Card for listView horizonal
     return Container(
-      // Card for listView horizonal
-    
       decoration: BoxDecoration(
-        gradient:
-            const LinearGradient(colors: AppColors.gradientColor),
+        gradient: const LinearGradient(colors: AppColors.gradientColor),
         borderRadius: BorderRadius.circular(15),
       ),
       child: Padding(
@@ -22,8 +19,7 @@ class HomeCards extends StatelessWidget {
           width: 170,
           height: 100,
           decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(15)),
+              color: Colors.white, borderRadius: BorderRadius.circular(15)),
         ),
       ),
     );

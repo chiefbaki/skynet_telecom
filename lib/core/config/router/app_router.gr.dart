@@ -9,7 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i4;
-import 'package:skynet/features/main_page/pages/main_page.dart' as _i2;
+import 'package:skynet/features/main_page/presentation/pages/main_page.dart' as _i2;
 import 'package:skynet/features/news_page/pages/news_page.dart' as _i3;
 import 'package:skynet/features/widgets/bottom_nav.dart' as _i1;
 

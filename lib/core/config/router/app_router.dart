@@ -9,7 +9,7 @@ class AppRouter extends $AppRouter {
   List<AutoRoute> get routes => [      
     AutoRoute(page: DashboardRoute.page, initial: true, children: [
       AutoRoute(page: MainRoute.page, initial: true),
-     AutoRoute(page: NewsRoute.page,),
+     AutoRoute(page: NewsRoute.page),
     ]),
     
    ];

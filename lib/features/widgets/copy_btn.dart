@@ -3,8 +3,10 @@ import 'package:skynet/core/config/themes/app_colors.dart';
 import 'package:skynet/core/config/themes/app_fonts.dart';
 
 class CopyBtn extends StatelessWidget {
+  final String personalAcc;
   const CopyBtn({
     super.key,
+    required this.personalAcc
   });
 
   @override
@@ -33,7 +35,7 @@ class CopyBtn extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                "175050620",
+                personalAcc,
                 style: AppFonts.s16w700.copyWith(
                     color: AppColors.lightGrey),
               ),
