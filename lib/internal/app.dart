@@ -12,7 +12,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: false,
-        scaffoldBackgroundColor: AppColors.scaffoldBgColor
+        scaffoldBackgroundColor: AppColors.scaffoldBgColor,
+        appBarTheme: const AppBarTheme(
+          color: AppColors.scaffoldBgColor,
+          elevation: 0
+        )
       ),
       routerConfig: AppRouter().config(),
     );
