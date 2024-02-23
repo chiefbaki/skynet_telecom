@@ -36,7 +36,7 @@ class Service {
 }
 
 class Address {
-  final String address;
+  String? address;
 
   Address({
     required this.address,
@@ -44,8 +44,9 @@ class Address {
 
   factory Address.fromJson(List<dynamic> json) {
     return Address(
-      address: json[0] ?? '',
+      address: json[0],
     );
+    
   }
 }
 

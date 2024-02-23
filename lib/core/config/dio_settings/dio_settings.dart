@@ -13,6 +13,7 @@ class DioSettings {
       baseUrl: ApiConsts.apiUrl,
       contentType: "application/json",
       headers: {
+        "Authorization": "Token ${ApiConsts.apiToken}",
         "Accept": "application/json",
       },
       connectTimeout: const Duration(seconds: 20),

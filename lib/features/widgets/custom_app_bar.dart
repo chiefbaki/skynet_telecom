@@ -31,10 +31,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     name,
                     style: AppFonts.s22w700.copyWith(color: AppColors.black),
                   ),
-                  Text(
-                    address,
-                    style:
-                        AppFonts.s12w700.copyWith(color: AppColors.lightGrey),
+                  SizedBox(
+                    width: 250,
+                    child: Text(
+                      address,
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis,
+                      style:
+                          AppFonts.s12w700.copyWith(color: AppColors.lightGrey),
+                    ),
                   ),
                 ],
               ),

@@ -4,9 +4,10 @@ import 'package:skynet/core/config/themes/app_colors.dart';
 import 'package:skynet/core/config/themes/app_fonts.dart';
 
 class ConnectedServices extends StatelessWidget {
-  
+  final String title;
   const ConnectedServices({
     super.key,
+    required this.title
   });
 
   @override
@@ -28,7 +29,7 @@ class ConnectedServices extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Интернет (980с)", style: AppFonts.s16w700,),
+            Text(title, style: AppFonts.s16w700,),
             Text("Оплачено", style: AppFonts.s16w700.copyWith(color: AppColors.green),)
           ],
         )

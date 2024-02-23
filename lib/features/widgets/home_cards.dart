@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:skynet/core/config/themes/app_colors.dart';
 
 class HomeCards extends StatelessWidget {
+  final String img;
   const HomeCards({
     super.key,
+    required this.img
   });
 
   @override
@@ -19,7 +21,8 @@ class HomeCards extends StatelessWidget {
           width: 170,
           height: 100,
           decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(15)),
+              color: Colors.white, borderRadius: BorderRadius.circular(15),
+              image: DecorationImage(image: NetworkImage(img))),
         ),
       ),
     );
