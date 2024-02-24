@@ -12,6 +12,9 @@ import 'package:skynet/features/main_page/domain/transations_repository_usecase.
 import 'package:skynet/features/main_page/presentation/bloc/client_info/client_info_bloc.dart';
 import 'package:skynet/features/main_page/presentation/bloc/personal_news/personal_news_bloc.dart';
 import 'package:skynet/features/main_page/presentation/bloc/transactions/bloc/transactions_bloc.dart';
+import 'package:skynet/features/news_page/domain/news_repository_imp.dart';
+import 'package:skynet/features/news_page/domain/news_repository_usecase.dart';
+import 'package:skynet/features/news_page/presentation/bloc/bloc/news_bloc.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -47,6 +50,15 @@ class MyApp extends StatelessWidget {
               useCase: RepositoryProvider.of<TransactionsRepositoryUseCase>(
                   context)),
         ),
+        RepositoryProvider(
+          create: (context) => NewsRepositoryUseCase(
+              dio: RepositoryProvider.of<DioSettings>(context).dio),
+        ),
+        RepositoryProvider(
+          create: (context) => NewsRepositoryImpl(
+              useCase: RepositoryProvider.of<NewsRepositoryUseCase>(
+                  context)),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -64,6 +76,11 @@ class MyApp extends StatelessWidget {
             create: (context) => TransactionsBloc(
                 repository:
                     RepositoryProvider.of<TransactionsRepositoryImpl>(context)),
+          ),
+          BlocProvider(
+            create: (context) => NewsBloc(
+                repository:
+                    RepositoryProvider.of<NewsRepositoryImpl>(context)),
           ),
         ],
         child: MaterialApp.router(

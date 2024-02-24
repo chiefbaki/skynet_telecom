@@ -11,4 +11,8 @@ abstract class AppColors {
     Color(0xFFc94b4b),
     Color(0xFF4b134f)
   ];
+  static const List<Color> whiteGradient = [
+    Colors.white,
+    Colors.white
+  ];
 }
