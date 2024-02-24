@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:skynet/core/config/router/app_router.gr.dart';
 import 'package:skynet/core/config/themes/app_colors.dart';
 import 'package:skynet/core/config/themes/app_fonts.dart';
 
@@ -20,6 +22,7 @@ class HistoryBtn extends StatelessWidget {
       child: ElevatedButton(
           onPressed: () {
             debugPrint("work History button");
+            context.router.push(const TransactionsRoute());
           },
           style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.white,

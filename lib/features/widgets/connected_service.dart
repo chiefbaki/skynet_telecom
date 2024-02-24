@@ -5,9 +5,11 @@ import 'package:skynet/core/config/themes/app_fonts.dart';
 
 class ConnectedServices extends StatelessWidget {
   final String title;
+  final num price;
   const ConnectedServices({
     super.key,
-    required this.title
+    required this.title,
+    required this.price
   });
 
   @override
@@ -29,7 +31,12 @@ class ConnectedServices extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title, style: AppFonts.s16w700,),
+            Row(
+              children: [
+                Text(title, style: AppFonts.s16w700,),
+                Text(price == 0 ? "  (бесплатно)" : "  (${price}c)", style: AppFonts.s16w700,),
+              ],
+            ),
             Text("Оплачено", style: AppFonts.s16w700.copyWith(color: AppColors.green),)
           ],
         )

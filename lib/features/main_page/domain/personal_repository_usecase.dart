@@ -10,9 +10,7 @@ class PersonalNewsUseCase {
     
     final List<dynamic> responseData = response.data;
     final List<PersonalNewsModel> data = responseData.map((e) => PersonalNewsModel.fromJson(e)).toList();
-    print(data.runtimeType);
     return data;
-
   }}
   
 

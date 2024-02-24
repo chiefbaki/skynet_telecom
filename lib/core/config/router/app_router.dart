@@ -9,5 +9,6 @@ class AppRouter extends $AppRouter {
           AutoRoute(page: MainRoute.page, initial: true),
           AutoRoute(page: NewsRoute.page),
         ]),
+        AutoRoute(page: TransactionsRoute.page,)
       ];
 }

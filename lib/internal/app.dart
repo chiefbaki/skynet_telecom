@@ -7,8 +7,11 @@ import 'package:skynet/features/main_page/domain/balance_repository_imp.dart';
 import 'package:skynet/features/main_page/domain/balance_repository_usecase.dart';
 import 'package:skynet/features/main_page/domain/personal_repository_imp.dart';
 import 'package:skynet/features/main_page/domain/personal_repository_usecase.dart';
+import 'package:skynet/features/main_page/domain/transations_repository_imp.dart';
+import 'package:skynet/features/main_page/domain/transations_repository_usecase.dart';
 import 'package:skynet/features/main_page/presentation/bloc/client_info/client_info_bloc.dart';
 import 'package:skynet/features/main_page/presentation/bloc/personal_news/personal_news_bloc.dart';
+import 'package:skynet/features/main_page/presentation/bloc/transactions/bloc/transactions_bloc.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -35,6 +38,15 @@ class MyApp extends StatelessWidget {
           create: (context) => PersonalNewsRepositoryImpl(
               useCase: RepositoryProvider.of<PersonalNewsUseCase>(context)),
         ),
+        RepositoryProvider(
+          create: (context) => TransactionsRepositoryUseCase(
+              dio: RepositoryProvider.of<DioSettings>(context).dio),
+        ),
+        RepositoryProvider(
+          create: (context) => TransactionsRepositoryImpl(
+              useCase: RepositoryProvider.of<TransactionsRepositoryUseCase>(
+                  context)),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -48,11 +60,19 @@ class MyApp extends StatelessWidget {
                 repository:
                     RepositoryProvider.of<PersonalNewsRepositoryImpl>(context)),
           ),
+          BlocProvider(
+            create: (context) => TransactionsBloc(
+                repository:
+                    RepositoryProvider.of<TransactionsRepositoryImpl>(context)),
+          ),
         ],
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
               useMaterial3: false,
+              progressIndicatorTheme: const ProgressIndicatorThemeData(
+                circularTrackColor: AppColors.circleColor,
+              ),
               scaffoldBackgroundColor: AppColors.scaffoldBgColor,
               appBarTheme: const AppBarTheme(
                   color: AppColors.scaffoldBgColor, elevation: 0)),

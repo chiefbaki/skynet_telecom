@@ -6,6 +6,8 @@ import 'package:skynet/core/config/themes/app_fonts.dart';
 import 'package:skynet/features/main_page/presentation/bloc/client_info/client_info_bloc.dart';
 import 'package:skynet/features/main_page/presentation/bloc/client_info/client_info_event.dart';
 import 'package:skynet/features/main_page/presentation/bloc/client_info/client_info_state.dart';
+import 'package:skynet/features/main_page/presentation/bloc/personal_news/personal_news_bloc.dart';
+import 'package:skynet/features/main_page/presentation/bloc/personal_news/personal_news_state.dart';
 import 'package:skynet/features/widgets/connected_service.dart';
 import 'package:skynet/features/widgets/copy_btn.dart';
 import 'package:skynet/features/widgets/custom_app_bar.dart';
@@ -13,7 +15,6 @@ import 'package:skynet/features/widgets/custom_btn.dart';
 import 'package:skynet/features/widgets/history_btn.dart';
 import 'package:skynet/features/widgets/home_cards.dart';
 import 'package:skynet/features/widgets/pay_btn.dart';
-
 
 @RoutePage()
 class MainPage extends StatelessWidget {
@@ -36,16 +37,35 @@ class MainPage extends StatelessWidget {
             ),
             body: Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                 child: SingleChildScrollView(
                   physics: const AlwaysScrollableScrollPhysics(),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const HomeCards(
-                        img:
-                            "http://91.210.169.237:8001/media/images/peakpx_2.jpg",
-                      ), // 404 error , img not found
+                      BlocBuilder<PersonalNewsBloc, PersonalNewsState>(
+                          builder: (context, state) {
+                        if (state is PersonalNewsLoading) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (state is PersonalNewsSuccess) {
+                          debugPrint(state.model.text);
+                          return HomeCards(
+                            img: state.model.image ??
+                                "error", // The img doesn't visible because of incorrect link, so it will be empty card
+                            title: state.model.title ?? "",
+                            text: state.model.text ?? "",
+                          );
+                        } else if (state is PersonalNewsError) {
+                          return Text(
+                            state.error,
+                            style: const TextStyle(fontSize: 30),
+                          );
+                        }
+                        return const SizedBox();
+                      }),
                       const SizedBox(
                         height: 16,
                       ),
@@ -142,19 +162,21 @@ class MainPage extends StatelessWidget {
                         height: 10,
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.5,
+                        height: MediaQuery.of(context).size.height * 0.2,
                         child: ListView.separated(
-                            itemCount: state.model.services?.length ?? 0,
-                            itemBuilder: (context, index) {
-                              return ConnectedServices(
-                                title: state.model.services?[index].name ?? "",
-                              );
-                            },
-                            separatorBuilder: (context, index) {
-                              return const SizedBox(
-                                height: 10,
-                              );
-                            },),
+                          itemCount: state.model.services?.length ?? 0,
+                          itemBuilder: (context, index) {
+                            return ConnectedServices(
+                              title: state.model.services?[index].name ?? "",
+                              price: state.model.services?[index].value ?? 0,
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(
+                              height: 10,
+                            );
+                          },
+                        ),
                       )
                     ],
                   ),

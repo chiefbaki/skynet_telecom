@@ -50,7 +50,7 @@ class Address {
   }
 }
 
-class ClientInfoModel {
+class BalanceModel {
   final String? balance;
   final Credit? credit;
   final List<Service>? services;
@@ -63,7 +63,7 @@ class ClientInfoModel {
   final String? vcRem;
   final String? nSum;
 
-  ClientInfoModel({
+  BalanceModel({
     this.balance,
     this.credit,
     this.services,
@@ -77,8 +77,8 @@ class ClientInfoModel {
     this.nSum,
   });
 
-  factory ClientInfoModel.fromJson(Map<String, dynamic> json) {
-    return ClientInfoModel(
+  factory BalanceModel.fromJson(Map<String, dynamic> json) {
+    return BalanceModel(
       balance: json['balance'],
       credit: Credit.fromJson(json['credit']),
       services:
