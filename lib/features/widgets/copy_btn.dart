@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:skynet/core/config/themes/app_colors.dart';
 import 'package:skynet/core/config/themes/app_fonts.dart';
 
+// Button to copy text
 class CopyBtn extends StatelessWidget {
   final String personalAcc;
   const CopyBtn({
@@ -23,7 +25,9 @@ class CopyBtn extends StatelessWidget {
                 offset: const Offset(1, -2))
           ]),
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () async{
+            await Clipboard.setData(ClipboardData(text: personalAcc));
+          },
           style: ElevatedButton.styleFrom(
               shadowColor: AppColors.black,
               backgroundColor: AppColors.white,

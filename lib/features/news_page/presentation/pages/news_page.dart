@@ -9,6 +9,7 @@ import 'package:skynet/features/widgets/custom_app_bar.dart';
 import 'package:skynet/features/widgets/custom_choice_chip.dart';
 import 'package:skynet/features/widgets/news_container.dart';
 
+
 @RoutePage()
 class NewsPage extends StatelessWidget {
   const NewsPage({super.key});
@@ -21,7 +22,11 @@ class NewsPage extends StatelessWidget {
     List<IconData> icons = [Icons.message, Icons.document_scanner, Icons.pages];
     return BlocBuilder<ClientInfoBloc, ClientInfoState>(
       builder: (context, state) {
-        if (state is ClientInfoSuccessState) {
+        if (state is ClientInfoLoadingState) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is ClientInfoSuccessState) {
           return Scaffold(
             appBar: CustomAppBar(
                 name: state.model.name ?? "",

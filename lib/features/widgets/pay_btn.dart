@@ -15,6 +15,7 @@ class PayBtn extends StatelessWidget {
       },
       child: Container(
         width: double.infinity,
+        height: MediaQuery.of(context).size.height * 0.057,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             gradient: const LinearGradient(

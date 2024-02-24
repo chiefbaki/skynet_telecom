@@ -7,6 +7,7 @@ import 'package:skynet/features/main_page/presentation/bloc/client_info/client_i
 import 'package:skynet/features/main_page/presentation/bloc/client_info/client_info_event.dart';
 import 'package:skynet/features/main_page/presentation/bloc/client_info/client_info_state.dart';
 import 'package:skynet/features/main_page/presentation/bloc/personal_news/personal_news_bloc.dart';
+import 'package:skynet/features/main_page/presentation/bloc/personal_news/personal_news_event.dart';
 import 'package:skynet/features/main_page/presentation/bloc/personal_news/personal_news_state.dart';
 import 'package:skynet/features/widgets/connected_service.dart';
 import 'package:skynet/features/widgets/copy_btn.dart';
@@ -23,6 +24,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<ClientInfoBloc>(context).add(ClientInfoEvent());
+    BlocProvider.of<PersonalNewsBloc>(context).add(GetPersonalNews());
     return BlocBuilder<ClientInfoBloc, ClientInfoState>(
       builder: (context, state) {
         if (state is ClientInfoLoadingState) {
@@ -41,6 +43,7 @@ class MainPage extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                 child: SingleChildScrollView(
                   physics: const AlwaysScrollableScrollPhysics(),
+                  
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -71,7 +74,7 @@ class MainPage extends StatelessWidget {
                       ),
                       Container(
                         width: double.infinity,
-                        height: MediaQuery.of(context).size.height * 0.42,
+                        height: MediaQuery.of(context).size.height * 0.43,
                         decoration: BoxDecoration(
                           color: AppColors.white,
                           borderRadius: BorderRadius.circular(15),

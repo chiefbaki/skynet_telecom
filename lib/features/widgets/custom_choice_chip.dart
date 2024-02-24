@@ -7,7 +7,11 @@ class CustomChoiceChip extends StatefulWidget {
   final String title;
   final IconData icon;
   final int index;
-  const CustomChoiceChip({super.key, required this.title, required this.icon, required this.index});
+  const CustomChoiceChip(
+      {super.key,
+      required this.title,
+      required this.icon,
+      required this.index});
 
   @override
   State<CustomChoiceChip> createState() => _CustomChoiceChipState();
@@ -15,19 +19,20 @@ class CustomChoiceChip extends StatefulWidget {
 
 class _CustomChoiceChipState extends State<CustomChoiceChip> {
   int selectedIndex = 0;
-  
+  bool isSelected = false;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        selectedIndex = widget.index;
-
-        setState(() {});
+        setState(() {
+          selectedIndex = widget.index;
+          isSelected = !isSelected;
+        });
       },
       child: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
-                colors: selectedIndex == widget.index
+                colors: isSelected
                     ? AppColors.gradientColor
                     : AppColors.whiteGradient),
             borderRadius: BorderRadius.circular(10)),
